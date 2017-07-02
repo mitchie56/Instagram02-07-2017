@@ -7,7 +7,7 @@ Metaball::Metaball() {
 	this->radius = ofRandom(3,18);
 	this->mass = radius/10;
 	//Dont't want velocity of 0
-	if (velocity.x == 0) {
+	if (velocity.x == 0.0) {
 		velocity.x = 0.3;
 	}
 	if (velocity.y == 0.0) {
@@ -21,11 +21,11 @@ Metaball::~Metaball() {
 
 void Metaball::update() {
 	this->edges();
-	velocity += acceleration;
+	this->velocity += this->acceleration;
 	//Limit velocity to stop chaos 
-	velocity.limit(6.3);
+	this->velocity.limit(6.3);
 	this->position += this->velocity;
-	acceleration *= 0.0;
+	this->acceleration *= 0.0;
 }
 
 /*
@@ -47,7 +47,7 @@ ofVec2f Metaball::attract(Metaball* ball) {
 
 void Metaball::applyForce(ofVec2f f) {
 	ofVec2f force = f / mass;
-	acceleration += force;
+	this->acceleration += force;
 }
 
 
